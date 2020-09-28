@@ -7,6 +7,7 @@ const main = async () => {
   // 문자 인코딩
   const encodingLocation = encodeURIComponent(location);
 
+  // axios 시간 측정
   console.time('axios time');
 
   // HTML 데이터 요청
@@ -16,6 +17,7 @@ const main = async () => {
 
   console.timeEnd('axios time');
 
+  // cheerio 시간 측정
   console.time('cheerio time');
 
   // HTML DOM 객체

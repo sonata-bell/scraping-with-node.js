@@ -10,6 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.20.0",
-    "jsdom": "^16.4.0"
+    "cheerio": "^1.0.0-rc.3"
   }
 }

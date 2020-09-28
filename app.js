@@ -1,22 +1,33 @@
 const axios = require('axios');
-const { JSDOM } = require('jsdom');
+const cheerio = require('cheerio');
 
 const main = async () => {
-  // 인코딩
-  const location = encodeURIComponent('서울');
+  // 검색 위치 설정
+  const location = '서울';
+  // 문자 인코딩
+  const encodingLocation = encodeURIComponent(location);
 
-  // 요청 URL
-  const html = await axios.get(
-    `https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=${location}+%EB%82%A0%EC%94%A8`
+  console.time('axios time');
+
+  // HTML 데이터 요청
+  const { data } = await axios.get(
+    `https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=${encodingLocation}+%EB%82%A0%EC%94%A8`
   );
 
-  // DOM 객체
-  const document = new JSDOM(html.data).window.document;
+  console.timeEnd('axios time');
 
-  // 검색 지역 온도 출력
-  const temperature = document.querySelector('.main_info .info_data .todaytemp').innerHTML;
+  console.time('cheerio time');
 
-  console.log(`현재 온도: ${temperature}도`);
+  // HTML DOM 객체
+  const $ = cheerio.load(data);
+
+  // DOM 접근 및 데이터 추출
+  const temperature = $('.main_info .info_data .todaytemp').text();
+
+  console.timeEnd('cheerio time');
+
+  // 콘솔 출력
+  console.log(`${location} 온도: ${temperature}도`);
 };
 
 main();

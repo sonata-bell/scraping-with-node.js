@@ -3,10 +3,12 @@
 ## 1. 실행 방법
 
 1. 소스 코드 다운로드
-2. VS Code로 소스 코드 열기
+2. VS Code 소스 코드 열기
 3. VS Code 터미널 실행
-4. 'npm install' 또는 'npm i' 명령어 실행(node_modules 다운로드)
-5. app.js의 location 변수에 원하는 지역 변경
+4. 'npm install' 또는 'npm i' 명령어 실행
+   - node_modules 다운로드
+5. app.js의 location 변수에 원하는 지역 설정
+   - default value: 서울
 6. 'node app' 명령어 실행
 7. 출력 값 확인
 
